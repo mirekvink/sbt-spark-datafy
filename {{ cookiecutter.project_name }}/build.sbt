@@ -15,6 +15,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % versions.spark % Provided,
   "org.apache.spark" %% "spark-sql" % versions.spark % Provided,
   "com.amazonaws" % "aws-java-sdk-ssm" % versions.aws % Provided,
+  "org.reflections" % "reflections" % "0.9.12",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
   "com.github.pathikrit" %% "better-files" % "3.9.1",
   "com.github.scopt" %% "scopt" % "3.7.1",
