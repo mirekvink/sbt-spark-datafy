@@ -1,0 +1,5 @@
+features:
+  - name: sbt
+    enabled: {{cookiecutter.build_tool == "sbt"}}
+    resources:
+      - sbt.build
