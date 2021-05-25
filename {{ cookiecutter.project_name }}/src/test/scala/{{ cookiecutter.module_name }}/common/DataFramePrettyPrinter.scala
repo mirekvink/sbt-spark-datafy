@@ -25,7 +25,7 @@ object DataFramePrettyPrinter {
             case array: Array[_] => array.mkString("[", ", ", "]")
             case seq: Seq[_] => seq.mkString("[", ", ", "]")
             case d: Date =>
-              DateTimeUtils.dateToString(DateTimeUtils.fromJavaDate(d))
+              DateTimeUtils.fromJavaDate(d).toString
             case _ => cell.toString
           }
           if (truncate > 0 && str.length > truncate) {

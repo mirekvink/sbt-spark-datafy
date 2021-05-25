@@ -14,6 +14,7 @@ resolvers += "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/mave
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % versions.spark % Provided,
   "org.apache.spark" %% "spark-sql" % versions.spark % Provided,
+  "org.apache.spark" %% "spark-hive" % versions.spark % Provided,
   "com.amazonaws" % "aws-java-sdk-ssm" % versions.aws % Provided,
   "org.reflections" % "reflections" % "0.9.12",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
