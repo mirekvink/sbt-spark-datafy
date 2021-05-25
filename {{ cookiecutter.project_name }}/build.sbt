@@ -5,7 +5,7 @@ version := "0.1"
 scalaVersion := "2.12.13"
 
 val versions = new {
-  val spark = "3.1.1",
+  val spark = "3.1.1"
   val aws = "1.11.563"
 }
 
@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % versions.spark % Provided,
   "com.amazonaws" % "aws-java-sdk-ssm" % versions.aws % Provided,
   "com.typesafe.scala-logging" %% "scala-logging" % "3.9.0",
-  "com.github.pathikri" %% "better-files" % "3.6.0",
+  "com.github.pathikrit" %% "better-files" % "3.9.1",
   "com.github.scopt" %% "scopt" % "3.7.1",
 
   "org.scalatest" %% "scalatest" % "3.0.5" % Test
