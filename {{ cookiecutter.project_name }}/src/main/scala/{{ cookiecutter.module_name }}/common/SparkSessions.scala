@@ -1,4 +1,4 @@
-package {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.common
+package com.dpg.addata.edm.common
 
 import org.apache.spark.sql.SparkSession
 
@@ -18,7 +18,8 @@ trait SparkSessions {
     "spark.sql.sources.partitionOverwriteMode" -> "dynamic"
   )
 
-  val spark: SparkSession = {
+  @transient
+  lazy val spark: SparkSession = {
     (defaultConfiguration ++ sparkOptions)
       .foldLeft(SparkSession.builder()) {
         case (b, (key, value)) => b.config(key, value)
@@ -28,4 +29,4 @@ trait SparkSessions {
   }
 }
 
-trait SparkApplication extends SparkSessions with App
+trait SparkApplication extends SparkSessions

@@ -7,21 +7,23 @@ import com.typesafe.scalalogging.LazyLogging
 
 object RouterApp extends SparkApplication with LazyLogging {
 
-  try {
-    // parse command line params
-    val cliParams = ApplicationConfig.parse(args) match {
-      case Some(value) => value
-      case None => throw ConfigurationException("Arguments could not be parsed")
-    }
-
-    // route to the correct jobs
-    cliParams.jobs.foreach(
-      entryPoint => {
-        val job = EntryPointMapper.mapEntryPointToJob(entryPoint)
-        job.run(cliParams.environment, cliParams.date)
+  def main(args: Array[String]): Unit = {
+    try {
+      // parse command line params
+      val cliParams = ApplicationConfig.parse(args) match {
+        case Some(value) => value
+        case None => throw ConfigurationException("Arguments could not be parsed")
       }
-    )
-  } finally {
-    spark.close()
+
+      // route to the correct jobs
+      cliParams.jobs.foreach(
+        entryPoint => {
+          val job = EntryPointMapper.mapEntryPointToJob(entryPoint)
+          job.run(cliParams.environment, cliParams.date)
+        }
+      )
+    } finally {
+      spark.close()
+    }
   }
 }
