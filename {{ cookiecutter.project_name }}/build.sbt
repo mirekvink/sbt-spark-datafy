@@ -36,3 +36,5 @@ assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
   case x => MergeStrategy.first
 }
+
+assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
