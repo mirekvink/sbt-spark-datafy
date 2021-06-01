@@ -1,4 +1,4 @@
-package com.dpg.addata.edm.common
+package {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.common
 
 import org.apache.spark.sql.SparkSession
 
