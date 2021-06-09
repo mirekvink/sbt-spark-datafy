@@ -2,14 +2,12 @@ name := "{{ cookiecutter.project_name }}"
 
 version := "0.1"
 
-scalaVersion := "2.12.13"
+scalaVersion := "2.12.14"
 
 val versions = new {
   val spark = "3.1.1"
   val aws = "1.11.563"
 }
-
-resolvers += "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/maven"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % versions.spark % Provided,
@@ -24,17 +22,17 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.5" % Test
 )
 
-run in Compile := Defaults.runTask(fullClasspath in Compile, mainClass in (Compile, run), runner in (Compile, run)).evaluated
+Compile / run := Defaults.runTask(fullClasspath in Compile, mainClass in (Compile, run), runner in (Compile, run)).evaluated
 
-fork in Test := true
+Test / fork := true
+Test / parallelExecution := false
+
 javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled")
 
-parallelExecution in Test := false
-
-assemblyMergeStrategy in assembly := {
+assembly / assemblyMergeStrategy := {
   case "META-INF/services/org.apache.spark.sql.sources.DataSourceRegister" => MergeStrategy.concat
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
   case x => MergeStrategy.first
 }
 
-assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
+assemblyPackageScala / assembleArtifact := false

@@ -6,17 +6,19 @@ import {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.common.SparkSe
 import {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.transformations.SharedTransformations
 import org.apache.spark.sql.DataFrame
 
+import {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.config.ApplicationConfig
+
 
 @EntryPoint(runnerType = "sample")
 object SampleJob extends Job with SparkSessions {
 
   import spark.implicits._
 
-  override def run(environment: String, date: LocalDate): Unit = {
+  override def run(conf: ApplicationConfig): Unit = {
     // execute ETL pipeline
-    val data = extract(environment)
-    val transformed = transform(data, date)
-    load(transformed, environment)
+    val data = extract(conf.environment)
+    val transformed = transform(conf.data, conf.date)
+    load(transformed, conf.environment)
   }
 
   def extract(env: String): DataFrame = {

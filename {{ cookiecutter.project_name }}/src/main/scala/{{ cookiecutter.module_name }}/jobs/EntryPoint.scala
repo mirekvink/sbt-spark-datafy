@@ -1,5 +1,7 @@
 package {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.jobs
 
+import {{ cookiecutter.group_id }}.{{ cookiecutter.module_name }}.config.ApplicationConfig
+
 import java.time.LocalDate
 
 import org.reflections.Reflections
@@ -48,5 +50,5 @@ object EntryPointMapper {
 }
 
 trait Job {
-  def run(environment: String, date: LocalDate)
+  def run(appConfig: ApplicationConfig)
 }
