@@ -5,7 +5,7 @@ version := "0.1"
 scalaVersion := "2.12.14"
 
 val versions = new {
-  val spark = "3.1.1"
+  val spark = "3.1.2"
   val aws = "1.11.563"
 }
 
