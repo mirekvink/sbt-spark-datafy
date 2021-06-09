@@ -19,7 +19,7 @@ object RouterApp extends SparkApplication with LazyLogging {
       cliParams.jobs.foreach(
         entryPoint => {
           val job = EntryPointMapper.mapEntryPointToJob(entryPoint)
-          job.run(cliParams.environment, cliParams.date)
+          job.run(cliParams)
         }
       )
     } finally {
